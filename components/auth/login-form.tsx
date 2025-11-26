@@ -1,0 +1,15 @@
+import CardWrapper from "./card-wrapper"
+
+const LoginForm = () => {
+  return (
+    <CardWrapper
+        headerLabel="Welcome back"
+        backButtonLabel="Donot have an account?"
+        backButtonHref="/auth/register"
+        showSocial={true}
+    
+    >login-form</CardWrapper>
+  )
+}
+
+export default LoginForm
