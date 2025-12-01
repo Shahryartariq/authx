@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { db } from "@/lib/db";
+import { prisma } from '@/lib/prisma'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +19,13 @@ export const metadata: Metadata = {
   description: "AuthX is a full-featured authentication and authorization system built with Next.js 14, Next-Auth v5, and server actions. It provides secure and flexible user management with support for credentials login, Google/GitHub OAuth, email verification, password reset, and two-factor authentication (2FA). AuthX includes role-based access control for Admin/User, fully protected routes, reusable UI components, and customizable hooks/utilities for seamless integration across server and client components.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const user = await db.user.findFirst();
   return (
     <html lang="en">
       <body
